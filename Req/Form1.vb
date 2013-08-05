@@ -3,7 +3,7 @@
     Dim C As New OAConnection.Connection
 
     Public SAP As New SAPCOM.SAPConnector
-    Public Conn As Object = SAP.GetSAPConnection("L7P", "BM4691", "LAT")
+    Public Conn As Object = SAP.GetSAPConnection("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
     Public Segundos As Integer = 3
     Public Status As String = ""
 
@@ -35,34 +35,14 @@
 
     Private Sub Form1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         P = C.GetActivesPlants().Tables(0)
-
-        'Dim DT As New DataTable
-        'DT.Columns.Add("A", Type.GetType("System.String"))
-        'DT.Columns.Add("B", Type.GetType("System.String"))
-        'DT.Columns.Add("C", Type.GetType("System.String"))
-        'DT.Columns.Add("D", Type.GetType("System.String"))
-        'DT.LoadDataRow(New Object() {"1", "1", "1", "1"}, True)
-        'DT.LoadDataRow(New Object() {"1", "1", "1", "2"}, True)
-        'DT.LoadDataRow(New Object() {"2", "1", "1", "1"}, True)
-        'DT.LoadDataRow(New Object() {"2", "1", "1", "2"}, True)
-        'DT.LoadDataRow(New Object() {"3", "1", "1", "1"}, True)
-
-
-        'Dim MaxPO = (From C In DT.AsEnumerable() _
-        '                  Select C.Item("A")).Distinct
-
-
-
-
-
     End Sub
 
     Private Sub BGRequis_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BGRequis.DoWork
         Status = "BGRequis: Starting download."
         BGRequis.ReportProgress(10)
 
-        Dim [OR] As New SAPCOM.OpenReqs_Report("L7P", "BM4691", "LAT")
-        Dim R As New SAPCOM.EBAN_Report("L7P", "BM4691", "LAT")
+        Dim [OR] As New SAPCOM.OpenReqs_Report("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
+        Dim R As New SAPCOM.EBAN_Report("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
         Dim r2 As DataRow
 
         'Dim Q As New SAPCOM.OpenReqs_Report()
@@ -157,7 +137,7 @@
         Status = "BGEKKO: Starting download."
         BGEKKO.ReportProgress(10)
 
-        Dim R As New SAPCOM.EKKO_Report("L7P", "BM4691", "LAT")
+        Dim R As New SAPCOM.EKKO_Report("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
 
         R.DeletionIndicator = False
         R.DocumentFrom = "4600000000"
@@ -204,7 +184,7 @@
         BGEKPO.ReportProgress(10)
 
 
-        Dim R As New SAPCOM.EKPO_Report("L7P", "BM4691", "LAT")
+        Dim R As New SAPCOM.EKPO_Report("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
         Dim dr As DataRow
 
         R.DeletionIndicator = False
@@ -257,7 +237,7 @@
 
 
         'Dim R As New SAPCOM.MARC_Report(Conn) -> Problema con el metodo sobrecargado
-        Dim R As New SAPCOM.MARC_Report("L7P", "BM4691", "LAT")
+        Dim R As New SAPCOM.MARC_Report("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
         Dim dr As DataRow
 
         R.MaterialFrom = "30000000"
@@ -304,7 +284,7 @@
 
 
         'Dim R As New SAPCOM.MARC_Report(Conn) -> Problema con el metodo sobrecargado
-        Dim R As New SAPCOM.EORD_Report("L7P", "BM4691", "LAT")
+        Dim R As New SAPCOM.EORD_Report("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
 
         R.Execute()
 
@@ -384,7 +364,7 @@
     End Sub
 
     Private Sub BGOTD_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles BGOTD.DoWork
-        Dim R As New SAPCOM.OTD_Report("L7P", "BM4691", "LAT")
+        Dim R As New SAPCOM.OTD_Report("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
 
         'For Each dr In P.Rows
         'R.IncludePlant(dr("Code"))
@@ -412,7 +392,7 @@
     End Sub
 
     Private Sub bgManufacter_DoWork(ByVal sender As System.Object, ByVal e As System.ComponentModel.DoWorkEventArgs) Handles bgManufacter.DoWork
-        Dim R As New SAPCOM.Manufacturers_Report("L7P", "BM4691", "LAT")
+        Dim R As New SAPCOM.Manufacturers_Report("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
         Dim cn As New OAConnection.Connection
 
         For Each dr In P.Rows
@@ -446,7 +426,7 @@
         Status = "BGEKKOPO: Starting download."
         BGEKKOPO.ReportProgress(10)
 
-        Dim R As New SAPCOM.EKKO_Report("L7P", "BM4691", "LAT")
+        Dim R As New SAPCOM.EKKO_Report("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
 
         R.DeletionIndicator = False
         R.DocumentFrom = "4500000000"
@@ -478,7 +458,7 @@
             Status = "BGEKKOPO: Starting download PO Detail."
             BGEKKOPO.ReportProgress(10)
 
-            Dim R2 As New SAPCOM.EKPO_Report("L7P", "BM4691", "LAT")
+            Dim R2 As New SAPCOM.EKPO_Report("L7P", "BM4691", "LAT") ' -> Change TNumber; use machine owner, password is taken from LA Tool Password setup @ System menu/Variants/SAP Passwords
             Dim dr As DataRow
 
             R2.DeletionIndicator = False
